@@ -28,7 +28,7 @@ const AddTodoForm = ({ addTodo }) => {
           <label className="pink-text text-lighten-2" htmlFor="todo">Enter a new todo item</label>
         </div>
         
-        <input type="submit" id="addTodo" value="Add Todo" className="btn-large waves-effect waves-light purple darken-4 pink-text text-lighten-2"/>
+        <button type="submit" id="addTodo" className="btn-large waves-effect waves-light purple darken-4 pink-text text-lighten-2" onClick={handleSubmit}>Add Todo</button>
       </form>
     )
   }
