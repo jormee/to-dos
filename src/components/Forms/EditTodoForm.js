@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const EditTodoForm = ({ editTodo, currentTodo, todos, saveEdit, cancelEdit }) => {
- 
+
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+
+  const theme = isLightTheme ? light : dark;
+
   //initialize the state of the component
   const [input, setInput] = useState(currentTodo);
 
@@ -13,7 +18,7 @@ const EditTodoForm = ({ editTodo, currentTodo, todos, saveEdit, cancelEdit }) =>
   //saves the current edit action
   const handleSave= e => {
     e.preventDefault()
-    saveEdit(input);
+    saveEdit(input)
   } 
 
   
@@ -23,20 +28,20 @@ const EditTodoForm = ({ editTodo, currentTodo, todos, saveEdit, cancelEdit }) =>
 
       <div className="input-field">
           <input 
-            className="pink-text text-darken-2"
+            style={{color: theme.color}}
             type="text"
             name="todo"
+            autoComplete="off"
             autoFocus={true}
-            required
             value={input.item}
             onChange={handleChange}
             />
-          <label className="pink-text text-lighten-2" htmlFor="todo">Edit todo</label>
+          <label htmlFor="todo">Edit todo</label>
         </div>
         
-        <button className="btn-large waves-effect waves-light purple darken-4 pink-text text-lighten-2 button" onClick={handleSave}>Save</button>
+        <button className="button" style={{backgroundColor: theme.header, color: theme.headerColor}} onClick={handleSave}>Save</button>
 
-        <button className="btn-large waves-effect waves-light grey lighten-2 grey-text text-darken-2 button" onClick={cancelEdit}>Cancel</button>
+        <button className="button" onClick={cancelEdit}>Cancel</button>
     </form>
   )
 }
